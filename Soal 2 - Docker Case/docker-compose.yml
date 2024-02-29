@@ -1,2 +1,17 @@
-version: "3"
+version: '3'
+
+#define services which is api service and etl service
 services:
+  api:
+    build:
+      context: /api #define api directory 
+      dockerfile: Dockerfile
+    ports: #Port 6000 of the container will be forwarded to port 6000 on the host
+      - "6000:6000"
+
+  etl:
+    build:
+      context: /etl #define api directory
+      dockerfile: Dockerfile
+    depends_on: 
+      - api
